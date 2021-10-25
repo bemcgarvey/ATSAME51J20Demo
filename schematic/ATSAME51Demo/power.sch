@@ -4,8 +4,8 @@ EELAYER END
 $Descr USLetter 11000 8500
 encoding utf-8
 Sheet 2 3
-Title "SAMduino"
-Date "2021-10-22"
+Title "ATSAME51 Demo Board"
+Date "2021-10-25"
 Rev "1.0"
 Comp "Quantum Embedded Systems"
 Comment1 ""
@@ -138,69 +138,6 @@ Wire Wire Line
 	3150 1250 2950 1250
 Wire Wire Line
 	2950 1250 2950 1650
-$Comp
-L Device:R R4
-U 1 1 61628FE0
-P 6600 1650
-F 0 "R4" V 6393 1650 50  0000 C CNN
-F 1 "15k" V 6484 1650 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 6530 1650 50  0001 C CNN
-F 3 "~" H 6600 1650 50  0001 C CNN
-	1    6600 1650
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R3
-U 1 1 61629740
-P 6300 2100
-F 0 "R3" H 6100 2150 50  0000 L CNN
-F 1 "22k" H 6100 2050 50  0000 L CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 6230 2100 50  0001 C CNN
-F 3 "~" H 6300 2100 50  0001 C CNN
-	1    6300 2100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C13
-U 1 1 61629C96
-P 6900 2100
-F 0 "C13" H 6600 2150 50  0000 L CNN
-F 1 "4.7uF" H 6550 2050 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 6938 1950 50  0001 C CNN
-F 3 "~" H 6900 2100 50  0001 C CNN
-	1    6900 2100
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR024
-U 1 1 6162A7ED
-P 6300 2500
-F 0 "#PWR024" H 6300 2250 50  0001 C CNN
-F 1 "GND" H 6305 2327 50  0000 C CNN
-F 2 "" H 6300 2500 50  0001 C CNN
-F 3 "" H 6300 2500 50  0001 C CNN
-	1    6300 2500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6750 1650 6900 1650
-Wire Wire Line
-	6900 1950 6900 1650
-Wire Wire Line
-	6300 2250 6300 2350
-Wire Wire Line
-	6900 2250 6900 2350
-Wire Wire Line
-	6900 2350 6300 2350
-Connection ~ 6300 2350
-Wire Wire Line
-	6300 2350 6300 2500
-Wire Wire Line
-	6300 1950 6300 1650
-Wire Wire Line
-	6300 1650 6450 1650
-Text GLabel 6150 1650 0    50   Input ~ 0
-VUSB_Detect
 Text GLabel 7550 3150 0    50   Input ~ 0
 Serial_D+
 Text GLabel 7550 3350 0    50   Input ~ 0
@@ -233,14 +170,6 @@ Wire Wire Line
 	8200 1500 8300 1500
 Wire Wire Line
 	8000 2200 8200 2200
-Wire Wire Line
-	6900 1650 7900 1650
-Wire Wire Line
-	7900 1650 7900 1200
-Connection ~ 6900 1650
-Connection ~ 7900 1200
-Wire Wire Line
-	7900 1200 8300 1200
 $Comp
 L Device:C C4
 U 1 1 61612BEB
@@ -415,9 +344,6 @@ NoConn ~ 8300 3050
 Text GLabel 1600 1000 1    50   Input ~ 0
 VIN
 Connection ~ 3000 4500
-Wire Wire Line
-	6300 1650 6150 1650
-Connection ~ 6300 1650
 Text Notes 4000 2100 0    50   ~ 0
 3.3V Power\n1 A
 $Comp
@@ -540,8 +466,6 @@ F 3 "http://www.onsemi.com/pub_link/Collateral/MBR0520LT1-D.PDF" H 7700 2650 50 
 $EndComp
 Wire Wire Line
 	7200 750  7200 1200
-Wire Wire Line
-	7650 1200 7900 1200
 Wire Wire Line
 	7350 1200 7200 1200
 Connection ~ 7200 1200
@@ -1038,4 +962,6 @@ Text GLabel 8600 4250 1    50   Input ~ 0
 PB31
 Wire Wire Line
 	8600 4400 8600 4250
+Wire Wire Line
+	7650 1200 8300 1200
 $EndSCHEMATC

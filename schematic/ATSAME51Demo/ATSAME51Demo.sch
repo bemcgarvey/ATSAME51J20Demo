@@ -5,7 +5,7 @@ $Descr USLetter 11000 8500
 encoding utf-8
 Sheet 1 3
 Title "ATSAME51 Demo Board"
-Date ""
+Date "2021-10-25"
 Rev "1.0"
 Comp "Quantum Embedded Systems"
 Comment1 ""
@@ -445,7 +445,7 @@ PB22
 Text GLabel 6150 1400 1    50   Input ~ 0
 PB23
 Text GLabel 6050 1400 1    50   Input ~ 0
-VUSB_Detect
+PA27
 Text GLabel 5250 1400 1    50   Input ~ 0
 PB30
 Text GLabel 5150 1400 1    50   Input ~ 0

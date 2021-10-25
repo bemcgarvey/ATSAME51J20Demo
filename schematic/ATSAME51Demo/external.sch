@@ -4,8 +4,8 @@ EELAYER END
 $Descr USLetter 11000 8500
 encoding utf-8
 Sheet 3 3
-Title "SAMduino"
-Date "2021-10-22"
+Title "ATSAME51 Demo Board"
+Date "2021-10-25"
 Rev "1.0"
 Comp "Quantum Embedded Systems"
 Comment1 ""
@@ -692,22 +692,11 @@ F 3 "~" H 7550 5200 50  0001 C CNN
 	1    7550 5200
 	1    0    0    -1  
 $EndComp
-$Comp
-L Connector_Generic:Conn_02x06_Odd_Even J16
-U 1 1 6179D1B9
-P 9350 5200
-F 0 "J16" H 9400 5525 50  0000 C CNN
-F 1 "Conn_02x06_Odd_Even" H 9400 5526 50  0001 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical" H 9350 5200 50  0001 C CNN
-F 3 "~" H 9350 5200 50  0001 C CNN
-	1    9350 5200
-	1    0    0    -1  
-$EndComp
 Text GLabel 5400 5000 0    50   Input ~ 0
 VCC3V3
 Text GLabel 7250 5000 0    50   Input ~ 0
 VCC3V3
-Text GLabel 9050 5000 0    50   Input ~ 0
+Text GLabel 9100 5000 0    50   Input ~ 0
 VCC3V3
 $Comp
 L power:GND #PWR035
@@ -734,12 +723,12 @@ $EndComp
 $Comp
 L power:GND #PWR040
 U 1 1 617B4203
-P 9650 5000
-F 0 "#PWR040" H 9650 4750 50  0001 C CNN
-F 1 "GND" V 9655 4872 50  0000 R CNN
-F 2 "" H 9650 5000 50  0001 C CNN
-F 3 "" H 9650 5000 50  0001 C CNN
-	1    9650 5000
+P 9700 5000
+F 0 "#PWR040" H 9700 4750 50  0001 C CNN
+F 1 "GND" V 9705 4872 50  0000 R CNN
+F 2 "" H 9700 5000 50  0001 C CNN
+F 3 "" H 9700 5000 50  0001 C CNN
+	1    9700 5000
 	0    -1   -1   0   
 $EndComp
 Text GLabel 3800 5100 0    50   Input ~ 0
@@ -888,48 +877,48 @@ Wire Wire Line
 	7950 5200 7850 5200
 Wire Wire Line
 	7850 5100 7950 5100
-Text GLabel 9050 5100 0    50   Input ~ 0
+Text GLabel 9100 5100 0    50   Input ~ 0
 PB22
-Text GLabel 9750 5100 2    50   Input ~ 0
+Text GLabel 9800 5100 2    50   Input ~ 0
 PB23
-Text GLabel 9050 5200 0    50   Input ~ 0
+Text GLabel 9800 5200 2    50   Input ~ 0
 SWCLK
-Text GLabel 9750 5200 2    50   Input ~ 0
+Text GLabel 9100 5300 0    50   Input ~ 0
 SWDIO
-Text GLabel 9050 5300 0    50   Input ~ 0
+Text GLabel 9800 5300 2    50   Input ~ 0
 PB30
-Text GLabel 9750 5300 2    50   Input ~ 0
+Text GLabel 9100 5400 0    50   Input ~ 0
 PB31
-Text GLabel 9050 5400 0    50   Input ~ 0
+Text GLabel 9800 5400 2    50   Input ~ 0
 PB00
-Text GLabel 9750 5400 2    50   Input ~ 0
+Text GLabel 9100 5500 0    50   Input ~ 0
 PB01
-Text GLabel 9050 5500 0    50   Input ~ 0
+Text GLabel 9800 5500 2    50   Input ~ 0
 PB02
-Text GLabel 9750 5500 2    50   Input ~ 0
+Text GLabel 9100 5600 0    50   Input ~ 0
 PB03
 Wire Wire Line
-	9150 5000 9050 5000
+	9200 5000 9100 5000
 Wire Wire Line
-	9050 5100 9150 5100
+	9100 5100 9200 5100
 Wire Wire Line
-	9150 5200 9050 5200
+	9700 5200 9800 5200
 Wire Wire Line
-	9050 5300 9150 5300
+	9800 5300 9700 5300
 Wire Wire Line
-	9150 5400 9050 5400
+	9700 5400 9800 5400
 Wire Wire Line
-	9050 5500 9150 5500
+	9800 5500 9700 5500
 Wire Wire Line
-	9650 5500 9750 5500
+	9200 5600 9100 5600
 Wire Wire Line
-	9750 5400 9650 5400
+	9100 5500 9200 5500
 Wire Wire Line
-	9650 5300 9750 5300
+	9200 5400 9100 5400
 Wire Wire Line
-	9750 5200 9650 5200
+	9100 5300 9200 5300
 Wire Wire Line
-	9650 5100 9750 5100
+	9700 5100 9800 5100
 $Comp
 L Connector_Generic:Conn_01x08 J13
 U 1 1 618F687B
@@ -1006,7 +995,38 @@ Wire Wire Line
 NoConn ~ 4900 7000
 NoConn ~ 4900 7100
 NoConn ~ 4900 7300
-NoConn ~ 6000 5700
 Text Notes 4500 7800 0    50   ~ 0
 Program/Debug
+$Comp
+L Connector_Generic:Conn_02x07_Odd_Even J16
+U 1 1 61786159
+P 9400 5300
+F 0 "J16" H 9450 5725 50  0000 C CNN
+F 1 "Conn_02x07_Odd_Even" H 9450 5726 50  0001 C CNN
+F 2 "" H 9400 5300 50  0001 C CNN
+F 3 "~" H 9400 5300 50  0001 C CNN
+	1    9400 5300
+	1    0    0    -1  
+$EndComp
+Text GLabel 9100 5200 0    50   Input ~ 0
+PA27
+$Comp
+L power:GND #PWR0101
+U 1 1 617DA1A7
+P 9700 5600
+F 0 "#PWR0101" H 9700 5350 50  0001 C CNN
+F 1 "GND" V 9705 5472 50  0000 R CNN
+F 2 "" H 9700 5600 50  0001 C CNN
+F 3 "" H 9700 5600 50  0001 C CNN
+	1    9700 5600
+	0    -1   -1   0   
+$EndComp
+Text GLabel 6100 5700 2    50   Input ~ 0
+VCC3V3
+Wire Wire Line
+	6000 5700 6100 5700
+Wire Wire Line
+	9100 5200 9200 5200
+Text Notes 7400 2700 0    50   ~ 0
+SERCOM0
 $EndSCHEMATC
