@@ -512,28 +512,6 @@ Connection ~ 1250 2700
 Wire Wire Line
 	1250 2700 2250 2700
 Wire Wire Line
-	1250 3500 1250 3900
-Wire Wire Line
-	1250 3900 2600 3900
-Wire Wire Line
-	1500 3500 1500 3800
-Wire Wire Line
-	1500 3800 2800 3800
-Wire Wire Line
-	2800 3800 2800 3900
-Wire Wire Line
-	1750 3500 1750 3700
-Wire Wire Line
-	1750 3700 2900 3700
-Wire Wire Line
-	2900 3700 2900 3900
-Wire Wire Line
-	2000 3500 2000 3600
-Wire Wire Line
-	2000 3600 3000 3600
-Wire Wire Line
-	3000 3600 3000 3900
-Wire Wire Line
 	1500 3200 1500 2100
 Connection ~ 1500 2100
 Wire Wire Line
@@ -568,10 +546,6 @@ Wire Wire Line
 Connection ~ 4150 2200
 Wire Wire Line
 	4150 2200 4350 2200
-Wire Wire Line
-	3850 3500 2700 3500
-Wire Wire Line
-	2700 3500 2700 3900
 Wire Wire Line
 	3100 3900 4150 3900
 Wire Wire Line
@@ -1029,4 +1003,28 @@ Wire Wire Line
 	9100 5200 9200 5200
 Text Notes 7400 2700 0    50   ~ 0
 SERCOM0
+Wire Wire Line
+	1250 3900 2600 3900
+Wire Wire Line
+	1250 3500 1250 3900
+Wire Wire Line
+	2000 3500 2700 3500
+Wire Wire Line
+	2700 3500 2700 3900
+Wire Wire Line
+	3850 3500 2800 3500
+Wire Wire Line
+	2800 3500 2800 3900
+Wire Wire Line
+	1500 3500 1500 3750
+Wire Wire Line
+	1500 3750 2900 3750
+Wire Wire Line
+	2900 3750 2900 3900
+Wire Wire Line
+	1750 3500 1750 3600
+Wire Wire Line
+	1750 3600 3000 3600
+Wire Wire Line
+	3000 3600 3000 3900
 $EndSCHEMATC
