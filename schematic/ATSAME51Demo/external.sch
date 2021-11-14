@@ -394,24 +394,24 @@ $EndComp
 $Comp
 L Connector_Generic:Conn_02x02_Odd_Even J7
 U 1 1 6175F2EC
-P 1900 5750
-F 0 "J7" H 1950 5875 50  0000 C CNN
-F 1 "Conn_02x02_Odd_Even" H 1950 5876 50  0001 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical" H 1900 5750 50  0001 C CNN
-F 3 "~" H 1900 5750 50  0001 C CNN
-	1    1900 5750
-	1    0    0    -1  
+P 2000 5750
+F 0 "J7" H 2050 5875 50  0000 C CNN
+F 1 "Conn_02x02_Odd_Even" H 2050 5876 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical" H 2000 5750 50  0001 C CNN
+F 3 "~" H 2000 5750 50  0001 C CNN
+	1    2000 5750
+	-1   0    0    -1  
 $EndComp
 $Comp
 L Connector_Generic:Conn_02x02_Odd_Even J8
 U 1 1 6175FDD7
-P 1900 6900
-F 0 "J8" V 1950 6712 50  0000 R CNN
-F 1 "Conn_02x02_Odd_Even" H 1950 7026 50  0001 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical" H 1900 6900 50  0001 C CNN
-F 3 "~" H 1900 6900 50  0001 C CNN
-	1    1900 6900
-	0    -1   -1   0   
+P 2000 6900
+F 0 "J8" V 2050 6712 50  0000 R CNN
+F 1 "Conn_02x02_Odd_Even" H 2050 7026 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical" H 2000 6900 50  0001 C CNN
+F 3 "~" H 2000 6900 50  0001 C CNN
+	1    2000 6900
+	0    1    -1   0   
 $EndComp
 Text GLabel 1550 7100 0    50   Input ~ 0
 VCC3V3
@@ -581,29 +581,25 @@ VCC3V3
 Connection ~ 2600 4500
 Wire Wire Line
 	2400 4500 2600 4500
-Text GLabel 1500 5750 0    50   Input ~ 0
+Text GLabel 2400 5750 2    50   Input ~ 0
 VCC3V3
 $Comp
 L power:GND #PWR028
 U 1 1 6181EDC9
-P 2200 5750
-F 0 "#PWR028" H 2200 5500 50  0001 C CNN
-F 1 "GND" V 2205 5622 50  0000 R CNN
-F 2 "" H 2200 5750 50  0001 C CNN
-F 3 "" H 2200 5750 50  0001 C CNN
-	1    2200 5750
-	0    -1   -1   0   
+P 1700 5750
+F 0 "#PWR028" H 1700 5500 50  0001 C CNN
+F 1 "GND" V 1705 5622 50  0000 R CNN
+F 2 "" H 1700 5750 50  0001 C CNN
+F 3 "" H 1700 5750 50  0001 C CNN
+	1    1700 5750
+	0    1    1    0   
 $EndComp
 Text GLabel 1500 5850 0    50   Input ~ 0
 SERCOM1_PAD0
 Text GLabel 2400 5850 2    50   Input ~ 0
 SERCOM1_PAD1
 Wire Wire Line
-	1500 5750 1700 5750
-Wire Wire Line
 	2200 5850 2250 5850
-Wire Wire Line
-	1500 5850 1650 5850
 Wire Wire Line
 	1650 6000 1650 5850
 Connection ~ 1650 5850
@@ -628,9 +624,6 @@ Wire Wire Line
 	2000 6500 2000 6600
 Wire Wire Line
 	2000 7100 1900 7100
-Wire Wire Line
-	1900 7100 1550 7100
-Connection ~ 1900 7100
 Text GLabel 3800 5000 0    50   Input ~ 0
 VCC3V3
 $Comp
@@ -1027,4 +1020,11 @@ Wire Wire Line
 	1750 3600 3000 3600
 Wire Wire Line
 	3000 3600 3000 3900
+Wire Wire Line
+	1500 5850 1650 5850
+Wire Wire Line
+	2200 5750 2400 5750
+Wire Wire Line
+	1550 7100 1900 7100
+Connection ~ 1900 7100
 $EndSCHEMATC
