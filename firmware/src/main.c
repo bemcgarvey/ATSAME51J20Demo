@@ -48,22 +48,33 @@
 
 
 void buttonCallback(uintptr_t context);
+void tc5Callback(TC_TIMER_STATUS status, uintptr_t context);
+bool reprintMenu = true; 
+
+void mainMenu(void);
 
 int main ( void )
 {
     /* Initialize all modules */
     SYS_Initialize ( NULL );
-    printf("Hello World\r\n");
     EIC_CallbackRegister(EIC_PIN_5, buttonCallback, (uintptr_t)NULL);
+    TC5_TimerCallbackRegister(tc5Callback, (uintptr_t)NULL);
+    TC5_TimerStart();
     while ( true )
     {
-        if (LeftButton_Get() == 0) {
-            RedLed_Set();
-            YellowLed_Set();
-        } else {
-            RedLed_Clear();
-            YellowLed_Clear();
+        if (reprintMenu) {
+            mainMenu();
+            reprintMenu = false;
         }
+        if (SERCOM0_USART_ReceiverIsReady()) {
+            char rx = SERCOM0_USART_ReadByte();
+            switch (rx) {
+                
+                default:
+                    reprintMenu = true;
+            }
+        }
+        
     }
 
     /* Execution should not come here during normal operation */
@@ -71,8 +82,19 @@ int main ( void )
     return ( EXIT_FAILURE );
 }
 
+void mainMenu(void) {
+    printf("Main Menu\r\n");
+    printf("  1) Buttons and LEDs\r\n");
+    printf("  2) TWI with LCD\r\n");
+    printf("  3) USB\r\n");
+}
+
+
 void buttonCallback(uintptr_t context) {
     BlueLed_Toggle();
+}
+
+void tc5Callback(TC_TIMER_STATUS status, uintptr_t context) {
     GreenLed_Toggle();
 }
 
