@@ -39,3 +39,4 @@ fp-info-cache
 **/debug
 **/dist
 **/build
+**/.generated_files
