@@ -36,6 +36,7 @@
 
 //TODO demo the following
 // Event system
+// ADC and DAC?
 // usb - mass storage to sd card with file system
 // TWI - lcd
 // PDEC with rotary encoder
@@ -49,46 +50,23 @@
 
 void buttonCallback(uintptr_t context);
 void tc5Callback(TC_TIMER_STATUS status, uintptr_t context);
-bool reprintMenu = true; 
 
-void mainMenu(void);
-
-int main ( void )
-{
+int main(void) {
     /* Initialize all modules */
-    SYS_Initialize ( NULL );
-    EIC_CallbackRegister(EIC_PIN_5, buttonCallback, (uintptr_t)NULL);
-    TC5_TimerCallbackRegister(tc5Callback, (uintptr_t)NULL);
+    SYS_Initialize(NULL);
+    EIC_CallbackRegister(EIC_PIN_5, buttonCallback, (uintptr_t) NULL);
+    TC5_TimerCallbackRegister(tc5Callback, (uintptr_t) NULL);
     TC5_TimerStart();
-    while ( true )
-    {
-        if (reprintMenu) {
-            mainMenu();
-            reprintMenu = false;
-        }
-        if (SERCOM0_USART_ReceiverIsReady()) {
-            char rx = SERCOM0_USART_ReadByte();
-            switch (rx) {
-                
-                default:
-                    reprintMenu = true;
-            }
-        }
+    printf("Starting demos\r\n");
+    while (true) {
         
+
     }
 
     /* Execution should not come here during normal operation */
 
-    return ( EXIT_FAILURE );
+    return ( EXIT_FAILURE);
 }
-
-void mainMenu(void) {
-    printf("Main Menu\r\n");
-    printf("  1) Buttons and LEDs\r\n");
-    printf("  2) TWI with LCD\r\n");
-    printf("  3) USB\r\n");
-}
-
 
 void buttonCallback(uintptr_t context) {
     BlueLed_Toggle();
@@ -100,5 +78,5 @@ void tc5Callback(TC_TIMER_STATUS status, uintptr_t context) {
 
 /*******************************************************************************
  End of File
-*/
+ */
 
