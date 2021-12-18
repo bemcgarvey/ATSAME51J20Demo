@@ -136,4 +136,4 @@ children:
             children:
             - {type: Value, value: NVMCTRL_MEMORY}
 - type: ElementPosition
-  attributes: {x: '154', y: '327', id: drv_memory}
+  attributes: {x: '979', y: '302', id: drv_memory}

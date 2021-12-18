@@ -69,7 +69,7 @@ USB_DEVICE_MSD_MEDIA_INIT_DATA USB_ALIGN  msdMediaInit0[1] =
 {
     /* LUN 0 */ 
     {
-        DRV_MEMORY_INDEX_0,
+        DRV_SDMMC_INDEX_0,
         512,
         sectorBuffer,
         NULL,
@@ -95,14 +95,14 @@ USB_DEVICE_MSD_MEDIA_INIT_DATA USB_ALIGN  msdMediaInit0[1] =
             }
         },
         {
-            DRV_MEMORY_IsAttached,
-            DRV_MEMORY_Open,
-            DRV_MEMORY_Close,
-            DRV_MEMORY_GeometryGet,
-            DRV_MEMORY_AsyncRead,
-            DRV_MEMORY_AsyncEraseWrite,
-            DRV_MEMORY_IsWriteProtected,
-            DRV_MEMORY_TransferHandlerSet,
+            DRV_SDMMC_IsAttached,
+            DRV_SDMMC_Open,
+            DRV_SDMMC_Close,
+            DRV_SDMMC_GeometryGet,
+            DRV_SDMMC_AsyncRead,
+            DRV_SDMMC_AsyncWrite,
+            DRV_SDMMC_IsWriteProtected,
+            DRV_SDMMC_EventHandlerSet,
             NULL
         }
     },
