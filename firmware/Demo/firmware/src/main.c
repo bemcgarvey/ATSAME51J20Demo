@@ -26,6 +26,7 @@
 #include <stdbool.h>                    // Defines true
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "definitions.h"                // SYS function prototypes
+#include "lcd.h"
 
 
 // *****************************************************************************
@@ -35,9 +36,7 @@
 // *****************************************************************************
 
 //TODO demo the following
-// Event system
 // ADC and DAC?
-// usb - mass storage to sd card with file system
 // TWI - lcd
 // PDEC with rotary encoder
 // NVM SmartEEPROM
@@ -58,8 +57,17 @@ int main(void) {
     TC5_TimerCallbackRegister(tc5Callback, (uintptr_t) NULL);
     TC5_TimerStart();
     printf("Starting demos\r\n");
+    LCDInit();
+    lprintf(0, "Hello World");
+    int count = 0;
     while (true) {
-        
+        lprintf(1, "Count=%d", count);
+        printf("Count=%d\r\n", count);
+        ++count;
+        SYS_TIME_HANDLE timer = SYS_TIME_HANDLE_INVALID;
+        if (SYS_TIME_DelayMS(1000, &timer) == SYS_TIME_SUCCESS) {
+            while (SYS_TIME_DelayIsComplete(timer) == false);
+        }
 
     }
 

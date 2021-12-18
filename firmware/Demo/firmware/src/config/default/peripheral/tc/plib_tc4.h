@@ -1,18 +1,24 @@
 /*******************************************************************************
-  System Exceptions File
+  Timer/Counter(TC4) PLIB
 
-  File Name:
-    exceptions.c
+  Company
+    Microchip Technology Inc.
 
-  Summary:
-    This file contains a function which overrides the default _weak_ exception
-    handlers provided by the interrupt.c file.
+  File Name
+    plib_tc4.h
 
-  Description:
-    This file redefines the default _weak_  exception handler with a more debug
-    friendly one. If an unexpected exception occurs the code will stop in a
-    while(1) loop.
- *******************************************************************************/
+  Summary
+    TC4 PLIB Header File.
+
+  Description
+    This file defines the interface to the TC peripheral library. This
+    library provides access to and control of the associated peripheral
+    instance.
+
+  Remarks:
+    None.
+
+*******************************************************************************/
 
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
@@ -39,83 +45,81 @@
 *******************************************************************************/
 // DOM-IGNORE-END
 
+#ifndef PLIB_TC4_H      // Guards against multiple inclusion
+#define PLIB_TC4_H
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-#include "configuration.h"
-#include "interrupts.h"
-#include "definitions.h"
+/* This section lists the other files that are included in this file.
+*/
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: Exception Handling Routine
-// *****************************************************************************
-// *****************************************************************************
+#include "device.h"
+#include "plib_tc_common.h"
 
-/* Brief default interrupt handlers for core IRQs.*/
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus // Provide C Compatibility
 
-void __attribute__((noreturn)) NonMaskableInt_Handler(void)
-{
-#if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
-    __builtin_software_breakpoint();
+    extern "C" {
+
 #endif
-    while (true)
-    {
+// DOM-IGNORE-END
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: Data Types
+// *****************************************************************************
+// *****************************************************************************
+/* The following data type definitions are used by the functions in this
+    interface and should be considered part it.
+*/
+
+// *****************************************************************************
+// *****************************************************************************
+// Section: Interface Routines
+// *****************************************************************************
+// *****************************************************************************
+/* The following functions make up the methods (set of possible operations) of
+   this interface.
+*/
+
+// *****************************************************************************
+
+void TC4_TimerInitialize( void );
+
+void TC4_TimerStart( void );
+
+void TC4_TimerStop( void );
+
+uint32_t TC4_TimerFrequencyGet( void );
+
+
+void TC4_Timer16bitPeriodSet( uint16_t period );
+
+uint16_t TC4_Timer16bitPeriodGet( void );
+
+uint16_t TC4_Timer16bitCounterGet( void );
+
+void TC4_Timer16bitCounterSet( uint16_t count );
+
+void TC4_Timer16bitCompareSet( uint16_t compare );
+
+
+
+void TC4_TimerCallbackRegister( TC_TIMER_CALLBACK callback, uintptr_t context );
+
+
+void TC4_TimerCommandSet(TC_COMMAND command);
+
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
     }
-}
 
-void __attribute__((noreturn)) HardFault_Handler(void)
-{
-#if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
-   __builtin_software_breakpoint();
 #endif
-   while (true)
-   {
-   }
-}
+// DOM-IGNORE-END
 
-void __attribute__((noreturn)) DebugMonitor_Handler(void)
-{
-#if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
-   __builtin_software_breakpoint();
-#endif
-   while (true)
-   {
-   }
-}
-
-void __attribute__((noreturn)) MemoryManagement_Handler(void)
-{
-#if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
-   __builtin_software_breakpoint();
-#endif
-   while (true)
-   {
-   }
-}
-
-void __attribute__((noreturn)) BusFault_Handler(void)
-{
-#if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
-   __builtin_software_breakpoint();
-#endif
-   while (true)
-   {
-   }
-}
-
-void __attribute__((noreturn)) UsageFault_Handler(void)
-{
-#if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
-   __builtin_software_breakpoint();
-#endif
-   while (true)
-   {
-   }
-}
-/*******************************************************************************
- End of File
- */
-
+#endif /* PLIB_TC4_H */

@@ -4,6 +4,33 @@ attributes: {id: tc5}
 children:
 - type: Symbols
   children:
+  - type: File
+    attributes: {id: TC_CAPTURE_HEADER}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
+  - type: File
+    attributes: {id: TC_CAPTURE_SOURCE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
+  - type: File
+    attributes: {id: TC_COMPARE_HEADER}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
   - type: Comment
     attributes: {id: TC_COMPARE_PERIOD_COMMENT}
     children:
@@ -13,6 +40,15 @@ children:
         attributes: {id: text}
         children:
         - {type: Value, value: '**** Compare Period is 409.6 us ****'}
+  - type: File
+    attributes: {id: TC_COMPARE_SOURCE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
   - type: KeyValueSet
     attributes: {id: TC_CTRLA_PRESCALER}
     children:
@@ -36,6 +72,22 @@ children:
         attributes: {id: text}
         children:
         - {type: Value, value: '****Timer resolution is 17066.6666667 nS****'}
+  - type: Boolean
+    attributes: {id: TC_SLAVE_MODE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: tc5, value: 'false'}
+  - type: File
+    attributes: {id: TC_TIMER_HEADER}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
   - type: Long
     attributes: {id: TC_TIMER_PERIOD}
     children:
@@ -49,6 +101,15 @@ children:
       children:
       - type: Dynamic
         attributes: {id: tc5, value: '58593'}
+  - type: File
+    attributes: {id: TC_TIMER_SOURCE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
   - type: Float
     attributes: {id: TC_TIMER_TIME_MS}
     children:
@@ -63,4 +124,4 @@ children:
       - type: User
         attributes: {value: '1000.0'}
 - type: ElementPosition
-  attributes: {x: '15', y: '362', id: tc5}
+  attributes: {x: '8', y: '319', id: tc5}

@@ -1,20 +1,28 @@
 /*******************************************************************************
-  NVIC PLIB Implementation
+  Driver Layer Interface Header
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_nvic.c
+    driver.h
 
   Summary:
-    NVIC PLIB Source File
+    Driver layer data types and definitions.
 
   Description:
-    None
+    This file defines the common macros and definitions for the driver layer
+    modules.
 
-*******************************************************************************/
+  Remarks:
+    The parent directory to the "system" directory should be added to the
+    compiler's search path for header files such that the following include
+    statement will successfully include this file.
 
+    #include "system/system.h"
+ *******************************************************************************/
+
+//DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -36,76 +44,25 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
-*******************************************************************************/
+ *******************************************************************************/
+//DOM-IGNORE-END
 
-#include "device.h"
-#include "plib_nvic.h"
+#ifndef SYSTEM_H
+#define SYSTEM_H
 
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: NVIC Implementation
+// Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
 
-void NVIC_Initialize( void )
-{
-    /* Priority 0 to 7 and no sub-priority. 0 is the highest priority */
-    NVIC_SetPriorityGrouping( 0x00 );
-
-    /* Enable NVIC Controller */
-    __DMB();
-    __enable_irq();
-
-    /* Enable the interrupt sources and configure the priorities as configured
-     * from within the "Interrupt Manager" of MHC. */
-    NVIC_SetPriority(EIC_EXTINT_5_IRQn, 3);
-    NVIC_EnableIRQ(EIC_EXTINT_5_IRQn);
-    NVIC_SetPriority(SERCOM1_0_IRQn, 7);
-    NVIC_EnableIRQ(SERCOM1_0_IRQn);
-    NVIC_SetPriority(SERCOM1_1_IRQn, 7);
-    NVIC_EnableIRQ(SERCOM1_1_IRQn);
-    NVIC_SetPriority(SERCOM1_2_IRQn, 7);
-    NVIC_EnableIRQ(SERCOM1_2_IRQn);
-    NVIC_SetPriority(SERCOM1_OTHER_IRQn, 7);
-    NVIC_EnableIRQ(SERCOM1_OTHER_IRQn);
-    NVIC_SetPriority(TC4_IRQn, 7);
-    NVIC_EnableIRQ(TC4_IRQn);
-    NVIC_SetPriority(TC5_IRQn, 7);
-    NVIC_EnableIRQ(TC5_IRQn);
+#include "system/system_common.h"
+#include "system/system_module.h"
 
 
+#endif // SYSTEM_H
+/*******************************************************************************
+ End of File
+*/
 
-}
-
-void NVIC_INT_Enable( void )
-{
-    __DMB();
-    __enable_irq();
-}
-
-bool NVIC_INT_Disable( void )
-{
-    bool processorStatus;
-
-    processorStatus = (bool) (__get_PRIMASK() == 0);
-
-    __disable_irq();
-    __DMB();
-
-    return processorStatus;
-}
-
-void NVIC_INT_Restore( bool state )
-{
-    if( state == true )
-    {
-        __DMB();
-        __enable_irq();
-    }
-    else
-    {
-        __disable_irq();
-        __DMB();
-    }
-}
