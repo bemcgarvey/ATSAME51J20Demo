@@ -34,6 +34,9 @@
 // *****************************************************************************
 // *****************************************************************************
 
+//Notes:  Must have usb serial number for multiple LUNS.  Otherwise only 
+// LUN0 is detected.
+
 int main ( void )
 {
     /* Initialize all modules */

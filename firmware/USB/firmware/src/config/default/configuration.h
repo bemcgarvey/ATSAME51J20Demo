@@ -98,6 +98,20 @@ extern "C" {
 /* SDMMC Driver Global Configuration Options */
 #define DRV_SDMMC_INSTANCES_NUMBER                       1
 
+/* Memory Driver Global Configuration Options */
+#define DRV_MEMORY_INSTANCES_NUMBER          1
+
+/* Memory Driver Instance 0 Configuration */
+#define DRV_MEMORY_INDEX_0                   0
+#define DRV_MEMORY_CLIENTS_NUMBER_IDX0       1
+#define DRV_MEMORY_BUFFER_QUEUE_SIZE_IDX0    1
+#define DRV_MEMORY_DEVICE_START_ADDRESS      0x80000
+#define DRV_MEMORY_DEVICE_MEDIA_SIZE         32UL
+#define DRV_MEMORY_DEVICE_MEDIA_SIZE_BYTES   (DRV_MEMORY_DEVICE_MEDIA_SIZE * 1024)
+#define DRV_MEMORY_DEVICE_PROGRAM_SIZE       512
+#define DRV_MEMORY_DEVICE_ERASE_SIZE         8192
+
+
 
 /*** SDMMC Driver Instance 0 Configuration ***/
 #define DRV_SDMMC_INDEX_0                                0
@@ -141,7 +155,7 @@ extern "C" {
 
 
 /* Number of Logical Units */
-#define USB_DEVICE_MSD_LUNS_NUMBER      1
+#define USB_DEVICE_MSD_LUNS_NUMBER      2
 
 
 

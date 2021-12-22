@@ -65,7 +65,7 @@ USB_MSD_CSW msdCSW0 USB_ALIGN;
 /*******************************************
  * MSD Function Driver initialization
  *******************************************/
-USB_DEVICE_MSD_MEDIA_INIT_DATA USB_ALIGN  msdMediaInit0[1] =
+USB_DEVICE_MSD_MEDIA_INIT_DATA USB_ALIGN  msdMediaInit0[2] =
 {
     /* LUN 0 */ 
     {
@@ -106,6 +106,45 @@ USB_DEVICE_MSD_MEDIA_INIT_DATA USB_ALIGN  msdMediaInit0[1] =
             NULL
         }
     },
+    /* LUN 1 */ 
+    {
+        DRV_MEMORY_INDEX_0,
+        512,
+        sectorBuffer,
+        NULL,
+        0,
+        {
+            0x00,    // peripheral device is connected, direct access block device
+            0x80,   // removable
+            0x04,    // version = 00=> does not conform to any standard, 4=> SPC-2
+            0x02,    // response is in format specified by SPC-2
+            0x1F,    // additional length
+            0x00,    // sccs etc.
+            0x00,    // bque=1 and cmdque=0,indicates simple queueing 00 is obsolete,
+                     // but as in case of other device, we are just using 00
+            0x00,    // 00 obsolete, 0x80 for basic task queueing
+            {
+                'M','i','c','r','o','c','h','p'
+            },
+            {
+                'M','a','s','s',' ','S','t','o','r','a','g','e',' ',' ',' ',' '
+            },
+            {
+                '0','0','0','1'
+            }
+        },
+        {
+            DRV_MEMORY_IsAttached,
+            DRV_MEMORY_Open,
+            DRV_MEMORY_Close,
+            DRV_MEMORY_GeometryGet,
+            DRV_MEMORY_AsyncRead,
+            DRV_MEMORY_AsyncEraseWrite,
+            DRV_MEMORY_IsWriteProtected,
+            DRV_MEMORY_TransferHandlerSet,
+            NULL
+        }
+    },
 };
   
 /**************************************************
@@ -113,7 +152,7 @@ USB_DEVICE_MSD_MEDIA_INIT_DATA USB_ALIGN  msdMediaInit0[1] =
  **************************************************/
 const USB_DEVICE_MSD_INIT msdInit0 =
 {
-    .numberOfLogicalUnits = 1,
+    .numberOfLogicalUnits = 2,
     .msdCBW = &msdCBW0,
     .msdCSW = &msdCSW0,
     .mediaInit = &msdMediaInit0[0]
@@ -165,7 +204,7 @@ const USB_DEVICE_DESCRIPTOR deviceDescriptor =
     0x0100,                                                 // Device release number in BCD format
     0x01,                                                   // Manufacturer string index
     0x02,                                                   // Product string index
-	0x00,                                                   // Device serial number string index
+    0x03,                                                   // Device serial number string index
     0x01                                                    // Number of possible configurations
 };
 
@@ -280,15 +319,38 @@ USB_DEVICE_CONFIGURATION_DESCRIPTORS_TABLE fullSpeedConfigDescSet[1] =
         USB_DESCRIPTOR_STRING,
 		{'S','A','M','E','5','1',' ','M','S','D',' ','D','e','m','o'}
     }; 
+/******************************************************************************
+ * Serial number string descriptor.  Note: This should be unique for each unit
+ * built on the assembly line.  Plugging in two units simultaneously with the
+ * same serial number into a single machine can cause problems.  Additionally,
+ * not all hosts support all character values in the serial number string.  The
+ * MSD Bulk Only Transport (BOT) specs v1.0 restrict the serial number to
+ * consist only of ASCII characters "0" through "9" and capital letters "A"
+ * through "F".
+ ******************************************************************************/
+    const struct
+    {
+        uint8_t bLength;                                    // Size of this descriptor in bytes
+        uint8_t bDscType;                                   // STRING descriptor type
+        uint16_t string[11];                                // String
+    }
+    serialNumberStringDescriptor =
+    {
+        sizeof(serialNumberStringDescriptor),
+        USB_DESCRIPTOR_STRING,
+        {'1','2','3','4','5','6','7','8','9','9','9'}
+		
+    };
 
 /***************************************
  * Array of string descriptors
  ***************************************/
-USB_DEVICE_STRING_DESCRIPTORS_TABLE stringDescriptors[3]=
+USB_DEVICE_STRING_DESCRIPTORS_TABLE stringDescriptors[4]=
 {
     (const uint8_t *const)&sd000,
     (const uint8_t *const)&sd001,
     (const uint8_t *const)&sd002,
+    (const uint8_t *const)&serialNumberStringDescriptor,
 };
 
 /*******************************************
@@ -303,7 +365,7 @@ const USB_DEVICE_MASTER_DESCRIPTOR usbMasterDescriptor =
 	NULL, 
 	0,
 	NULL,
-	3,  													// Total number of string descriptors available.
+	4,  													// Total number of string descriptors available.
     stringDescriptors,                                      // Pointer to array of string descriptors.
 	NULL, 
 	NULL
