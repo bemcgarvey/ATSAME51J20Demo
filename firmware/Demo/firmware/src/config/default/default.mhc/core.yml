@@ -2598,6 +2598,15 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'false'}
+  - type: Setting
+    attributes: {id: XC32_LINKER_PREPROC_MARCOS}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: value}
+        children:
+        - {type: Value}
   - type: Integer
     attributes: {id: XOSC0_FREQ}
     children:

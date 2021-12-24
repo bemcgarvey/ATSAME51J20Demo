@@ -37,8 +37,6 @@
 
 //TODO demo the following
 // ADC and DAC?
-// TWI - lcd
-// PDEC with rotary encoder
 // NVM SmartEEPROM
 // DMA
 // RTC
