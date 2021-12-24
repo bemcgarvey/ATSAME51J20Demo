@@ -1,0 +1,37 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: file_system_bootloader}
+children:
+- type: Symbols
+  children:
+  - type: String
+    attributes: {id: BTL_SIZE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: file_system_bootloader, value: '32768'}
+  - type: String
+    attributes: {id: MEM_USED}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: file_system_bootloader, value: NVMCTRL}
+- type: Attachments
+  children:
+  - type: DirectDependency
+    attributes: {id: btl_MEMORY_dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: nvmctrl}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: NVMCTRL_MEMORY}
+- type: ElementPosition
+  attributes: {x: '320', y: '99', id: file_system_bootloader}
