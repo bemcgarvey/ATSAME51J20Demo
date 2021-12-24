@@ -13,13 +13,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 6069C4FD56993BDA3B1FC223DD5BAA4A
-- generatedChecksum: 5A213CBBF3A207A32936D0FAECD4E629
+- generatedChecksum: 26A207D9C5251AB868B79EBA6C55899C
   logicalPath: config/default
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 5A213CBBF3A207A32936D0FAECD4E629
+  userChecksum: 26A207D9C5251AB868B79EBA6C55899C
 - generatedChecksum: 4B79B8B11248B6EEF09025D521B25B97
   logicalPath: config/default
   name: interrupts.c
@@ -41,13 +41,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: null
-- generatedChecksum: E6C958D873D5B19993E216F7ED6F7D6B
+- generatedChecksum: 1E60CC61744B92862FD89623AA6C5A7F
   logicalPath: config/default/peripheral/clock
   name: plib_clock.c
   physicalPath: peripheral/clock
   security: NON_SECURE
   type: SOURCE
-  userChecksum: E6C958D873D5B19993E216F7ED6F7D6B
+  userChecksum: 1E60CC61744B92862FD89623AA6C5A7F
 - generatedChecksum: D903E8D9DCBC4107D0AA841E07F653BA
   logicalPath: config/default/peripheral/cmcc
   name: plib_cmcc.c
@@ -97,6 +97,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 5ED94DE345803E84EC0CEA44E5B43CFC
+- generatedChecksum: 7A0E59547A76E4DC776C520B76A4A2AD
+  logicalPath: config/default/peripheral/rstc
+  name: plib_rstc.c
+  physicalPath: peripheral/rstc
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 7A0E59547A76E4DC776C520B76A4A2AD
+- generatedChecksum: 9FC3A7DAFB93411B8DB89CF5F5D224A3
+  logicalPath: config/default/peripheral/rtc
+  name: plib_rtc_clock.c
+  physicalPath: peripheral/rtc
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 9FC3A7DAFB93411B8DB89CF5F5D224A3
 - generatedChecksum: 7634C58744D0FEDF6E8398B01F8346D0
   logicalPath: config/default/peripheral/sercom/usart
   name: plib_sercom0_usart.c
@@ -111,6 +125,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 22952E8D40BB4BEDFF304CD1A5B1E314
+- generatedChecksum: 765DF2A9391E11D5FB39EC3F896322CC
+  logicalPath: config/default/peripheral/supc
+  name: plib_supc.c
+  physicalPath: peripheral/supc
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 765DF2A9391E11D5FB39EC3F896322CC
 - generatedChecksum: 59098CE1E0E60B45B639DD55CE19F33D
   logicalPath: config/default/peripheral/tc
   name: plib_tc4.c
@@ -356,13 +377,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 65513601965E1BADD5659DCE674BE9AD
-- generatedChecksum: 76694D34A57DA736F486D5B52C9ABB58
+- generatedChecksum: F7704C8D19FC515FDE98BCA70F70C78A
   logicalPath: config/default
   name: definitions.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 76694D34A57DA736F486D5B52C9ABB58
+  userChecksum: F7704C8D19FC515FDE98BCA70F70C78A
 - generatedChecksum: CB14434C0E245529DDD9AFEAE3CA6AF1
   logicalPath: config/default
   name: device.h
@@ -720,6 +741,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 90AEFDD3553E5EC0FB5B81C8BDBF33AD
+- generatedChecksum: 19E1B66EA17326A862433B89B83463D2
+  logicalPath: config/default/peripheral/rstc
+  name: plib_rstc.h
+  physicalPath: peripheral/rstc
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 19E1B66EA17326A862433B89B83463D2
+- generatedChecksum: F207EAA5CD93182B6362CE5247FD11CB
+  logicalPath: config/default/peripheral/rtc
+  name: plib_rtc.h
+  physicalPath: peripheral/rtc
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: F207EAA5CD93182B6362CE5247FD11CB
 - generatedChecksum: 9E847139EB4A35248CEAA3CF830D18DD
   logicalPath: config/default/peripheral/sercom/usart
   name: plib_sercom0_usart.h
@@ -748,6 +783,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 881B1D67FA4C320BBD6AC86344695C9C
+- generatedChecksum: 79AFCF89F419A0C4ED8E8599A2238665
+  logicalPath: config/default/peripheral/supc
+  name: plib_supc.h
+  physicalPath: peripheral/supc
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 79AFCF89F419A0C4ED8E8599A2238665
 - generatedChecksum: 977450DD630C3F208FD74B25F46BD039
   logicalPath: config/default/peripheral/tc
   name: plib_tc4.h

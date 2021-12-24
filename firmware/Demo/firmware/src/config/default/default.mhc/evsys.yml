@@ -571,6 +571,13 @@ children:
       - type: Dynamic
         attributes: {id: eic, value: 'false'}
   - type: Boolean
+    attributes: {id: GENERATOR_RTC_PER_0_ACTIVE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: rtc, value: 'false'}
+  - type: Boolean
     attributes: {id: USER_PDEC_EVU_0_READY}
     children:
     - type: Values

@@ -182,7 +182,11 @@ void SYS_Initialize ( void* data )
 
     SERCOM0_USART_Initialize();
 
+    SUPC_Initialize();
+
     EIC_Initialize();
+
+    RTC_Initialize();
 
     TC5_TimerInitialize();
 
