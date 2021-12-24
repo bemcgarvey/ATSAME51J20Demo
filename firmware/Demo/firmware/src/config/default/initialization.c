@@ -186,6 +186,8 @@ void SYS_Initialize ( void* data )
 
     TC5_TimerInitialize();
 
+    PDEC_QDECInitialize();
+
     TC4_TimerInitialize();
 
 

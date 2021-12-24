@@ -60,12 +60,21 @@ int main(void) {
     LCDInit();
     lprintf(0, "Hello World");
     int count = 0;
+    PDEC_QDECStart();
     while (true) {
         lprintf(1, "Count=%d", count);
-        printf("Count=%d\r\n", count);
+        int16_t pos = PDEC_QDECPositionGet();
+        int16_t rev = PDEC_QDECRevolutionsGet();
+        pos = pos - rev;
+        if (pos < 0) {
+            pos = -pos;
+        }
+        pos /= 4;
+        rev /= 1024;
+        printf("Position = %hi revolution = %hi\r\n", pos, rev);
         ++count;
         SYS_TIME_HANDLE timer = SYS_TIME_HANDLE_INVALID;
-        if (SYS_TIME_DelayMS(1000, &timer) == SYS_TIME_SUCCESS) {
+        if (SYS_TIME_DelayMS(500, &timer) == SYS_TIME_SUCCESS) {
             while (SYS_TIME_DelayIsComplete(timer) == false);
         }
 

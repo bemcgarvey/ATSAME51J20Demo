@@ -77,8 +77,7 @@ void EIC_Initialize (void)
         /* Wait for sync */
     }
 
-    /* EIC is clocked by ultra low power clock */
-    EIC_REGS->EIC_CTRLA |= (uint8_t)EIC_CTRLA_CKSEL_Msk;
+    /* EIC is by default clocked by GCLK */
 
     /* NMI Control register */
 
@@ -95,20 +94,22 @@ void EIC_Initialize (void)
     /* Interrupt sense type and filter control for EXTINT channels 8 to 15 */
     EIC_REGS->EIC_CONFIG[1] =  EIC_CONFIG_SENSE0_NONE 
          |  EIC_CONFIG_SENSE1_NONE  
-         |  EIC_CONFIG_SENSE2_NONE  
-         |  EIC_CONFIG_SENSE3_NONE  
+         |  EIC_CONFIG_SENSE2_HIGH  
+         |  EIC_CONFIG_SENSE3_HIGH  
          |  EIC_CONFIG_SENSE4_NONE  
          |  EIC_CONFIG_SENSE5_NONE  
          |  EIC_CONFIG_SENSE6_NONE  
          |  EIC_CONFIG_SENSE7_NONE   ;
     
 
+    /* External Interrupt Asynchronous Mode enable */
+    EIC_REGS->EIC_ASYNCH = 0xc00U;
 
     /* Debouncer enable */
     EIC_REGS->EIC_DEBOUNCEN = 0x30U;
 
     /* Event Control Output enable */
-    EIC_REGS->EIC_EVCTRL = 0x10U;
+    EIC_REGS->EIC_EVCTRL = 0xc10U;
 
     /* Debouncer Setting */
     EIC_REGS->EIC_DPRESCALER = EIC_DPRESCALER_PRESCALER0(0UL) | EIC_DPRESCALER_PRESCALER1(0UL) ;
@@ -127,8 +128,8 @@ void EIC_Initialize (void)
     eicCallbackObject[7].eicPinNo = EIC_PIN_MAX;
     eicCallbackObject[8].eicPinNo = EIC_PIN_MAX;
     eicCallbackObject[9].eicPinNo = EIC_PIN_MAX;
-    eicCallbackObject[10].eicPinNo = EIC_PIN_MAX;
-    eicCallbackObject[11].eicPinNo = EIC_PIN_MAX;
+    eicCallbackObject[10].eicPinNo = EIC_PIN_10;
+    eicCallbackObject[11].eicPinNo = EIC_PIN_11;
     eicCallbackObject[12].eicPinNo = EIC_PIN_MAX;
     eicCallbackObject[13].eicPinNo = EIC_PIN_MAX;
     eicCallbackObject[14].eicPinNo = EIC_PIN_MAX;

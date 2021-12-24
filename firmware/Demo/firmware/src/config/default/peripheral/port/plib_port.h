@@ -83,6 +83,24 @@
 #define YellowLed_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 7U)) & 0x01U)
 #define YellowLed_PIN                  PORT_PIN_PB07
 
+/*** Macros for GPIO_PA12 pin ***/
+#define GPIO_PA12_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 12U))
+#define GPIO_PA12_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = ((uint32_t)1U << 12U))
+#define GPIO_PA12_Toggle()            (PORT_REGS->GROUP[0].PORT_OUTTGL = ((uint32_t)1U << 12U))
+#define GPIO_PA12_OutputEnable()      (PORT_REGS->GROUP[0].PORT_DIRSET = ((uint32_t)1U << 12U))
+#define GPIO_PA12_InputEnable()       (PORT_REGS->GROUP[0].PORT_DIRCLR = ((uint32_t)1U << 12U))
+#define GPIO_PA12_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 12U)) & 0x01U)
+#define GPIO_PA12_PIN                  PORT_PIN_PA12
+
+/*** Macros for GPIO_PA13 pin ***/
+#define GPIO_PA13_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 13U))
+#define GPIO_PA13_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = ((uint32_t)1U << 13U))
+#define GPIO_PA13_Toggle()            (PORT_REGS->GROUP[0].PORT_OUTTGL = ((uint32_t)1U << 13U))
+#define GPIO_PA13_OutputEnable()      (PORT_REGS->GROUP[0].PORT_DIRSET = ((uint32_t)1U << 13U))
+#define GPIO_PA13_InputEnable()       (PORT_REGS->GROUP[0].PORT_DIRCLR = ((uint32_t)1U << 13U))
+#define GPIO_PA13_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 13U)) & 0x01U)
+#define GPIO_PA13_PIN                  PORT_PIN_PA13
+
 /*** Macros for GreenLed pin ***/
 #define GreenLed_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 31U))
 #define GreenLed_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 31U))

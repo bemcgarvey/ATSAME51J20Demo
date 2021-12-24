@@ -59,6 +59,7 @@
 #include "peripheral/cmcc/plib_cmcc.h"
 #include "peripheral/eic/plib_eic.h"
 #include "peripheral/tc/plib_tc5.h"
+#include "peripheral/pdec/plib_pdec.h"
 #include "system/time/sys_time.h"
 #include "peripheral/tc/plib_tc4.h"
 #include "system/int/sys_int.h"

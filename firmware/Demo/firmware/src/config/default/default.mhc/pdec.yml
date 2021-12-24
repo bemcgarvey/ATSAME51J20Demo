@@ -1,0 +1,221 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: pdec}
+children:
+- type: Symbols
+  children:
+  - type: String
+    attributes: {id: ENCODER_POS_GET_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: PDEC_QDECPositionGet}
+  - type: String
+    attributes: {id: ENCODER_POS_SET_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: ''}
+  - type: String
+    attributes: {id: ENCODER_SPEED_GET_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: ''}
+  - type: String
+    attributes: {id: ENCODER_SPEED_SET_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: ''}
+  - type: String
+    attributes: {id: ENCODER_START_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: PDEC_QDECStart}
+  - type: String
+    attributes: {id: ENCODER_STOP_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: PDEC_QDECStop}
+  - type: Integer
+    attributes: {id: PDEC_CC0_ANGULAR}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '1023'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '79'}
+  - type: Integer
+    attributes: {id: PDEC_CC0_REVOLUTION}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '63'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PDEC_CC1_ANGULAR}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '1023'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PDEC_CC1_REVOLUTION}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '63'}
+  - type: Hex
+    attributes: {id: PDEC_CTRLA_ANGULAR_MASK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: '1023'}
+  - type: KeyValueSet
+    attributes: {id: PDEC_CTRLA_CONF}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '0'}
+  - type: Boolean
+    attributes: {id: PDEC_CTRLA_PEREN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Integer
+    attributes: {id: PDEC_CTRLA_REVOLUTION}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: '6'}
+  - type: Hex
+    attributes: {id: PDEC_CTRLA_REVOLUTION_MASK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: '64512'}
+  - type: Hex
+    attributes: {id: PDEC_EVCTRL}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: '96'}
+  - type: Integer
+    attributes: {id: PDEC_FILTER}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '2'}
+  - type: Integer
+    attributes: {id: PDEC_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: '60000000'}
+  - type: Combo
+    attributes: {id: PDEC_INDEX}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Disabled}
+  - type: Combo
+    attributes: {id: PDEC_PHASE_A}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: label}
+        children:
+        - {type: Value, value: Select Quadrature Phase A}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Input Event}
+  - type: Combo
+    attributes: {id: PDEC_PHASE_B}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: label}
+        children:
+        - {type: Value, value: Select Quadrature Phase B}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Input Event}
+  - type: Hex
+    attributes: {id: PDEC_PIN}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: '0'}
+  - type: Hex
+    attributes: {id: PDEC_PIN_INV}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pdec, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: PDEC_PRESC_PRESC}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '0'}
+  - type: Comment
+    attributes: {id: PDEC_Resolution}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: '****PDEC Counter resolution is 16.6666666667 nS****'}
+- type: ElementPosition
+  attributes: {x: '181', y: '126', id: pdec}
