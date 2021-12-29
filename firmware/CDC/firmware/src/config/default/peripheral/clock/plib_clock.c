@@ -96,6 +96,41 @@ static void FDPLL0_Initialize(void)
     }
 }
 
+static void FDPLL1_Initialize(void)
+{
+    GCLK_REGS->GCLK_PCHCTRL[2] = GCLK_PCHCTRL_GEN(0x1)  | GCLK_PCHCTRL_CHEN_Msk;
+    while ((GCLK_REGS->GCLK_PCHCTRL[1] & GCLK_PCHCTRL_CHEN_Msk) != GCLK_PCHCTRL_CHEN_Msk)
+    {
+        /* Wait for synchronization */
+    }
+
+    /****************** DPLL1 Initialization  *********************************/
+
+    /* Configure DPLL    */
+    OSCCTRL_REGS->DPLL[1].OSCCTRL_DPLLCTRLB = OSCCTRL_DPLLCTRLB_FILTER(0) | OSCCTRL_DPLLCTRLB_LTIME(0x0)| OSCCTRL_DPLLCTRLB_REFCLK(0) ;
+
+
+    OSCCTRL_REGS->DPLL[1].OSCCTRL_DPLLRATIO = OSCCTRL_DPLLRATIO_LDRFRAC(0) | OSCCTRL_DPLLRATIO_LDR(99);
+
+    while((OSCCTRL_REGS->DPLL[1].OSCCTRL_DPLLSYNCBUSY & OSCCTRL_DPLLSYNCBUSY_DPLLRATIO_Msk) == OSCCTRL_DPLLSYNCBUSY_DPLLRATIO_Msk)
+    {
+        /* Waiting for the synchronization */
+    }
+
+    /* Enable DPLL */
+    OSCCTRL_REGS->DPLL[1].OSCCTRL_DPLLCTRLA = OSCCTRL_DPLLCTRLA_ENABLE_Msk   ;
+
+    while((OSCCTRL_REGS->DPLL[1].OSCCTRL_DPLLSYNCBUSY & OSCCTRL_DPLLSYNCBUSY_ENABLE_Msk) == OSCCTRL_DPLLSYNCBUSY_ENABLE_Msk )
+    {
+        /* Waiting for the DPLL enable synchronization */
+    }
+
+    while((OSCCTRL_REGS->DPLL[1].OSCCTRL_DPLLSTATUS & (OSCCTRL_DPLLSTATUS_LOCK_Msk | OSCCTRL_DPLLSTATUS_CLKRDY_Msk)) !=
+                (OSCCTRL_DPLLSTATUS_LOCK_Msk | OSCCTRL_DPLLSTATUS_CLKRDY_Msk))
+    {
+        /* Waiting for the Ready state */
+    }
+}
 
 static void DFLL_Initialize(void)
 {
@@ -167,6 +202,26 @@ static void GCLK2_Initialize(void)
     }
 }
 
+static void GCLK3_Initialize(void)
+{
+    GCLK_REGS->GCLK_GENCTRL[3] = GCLK_GENCTRL_DIV(1) | GCLK_GENCTRL_SRC(0) | GCLK_GENCTRL_GENEN_Msk;
+
+    while((GCLK_REGS->GCLK_SYNCBUSY & GCLK_SYNCBUSY_GENCTRL_GCLK3) == GCLK_SYNCBUSY_GENCTRL_GCLK3)
+    {
+        /* wait for the Generator 3 synchronization */
+    }
+}
+
+static void GCLK4_Initialize(void)
+{
+    GCLK_REGS->GCLK_GENCTRL[4] = GCLK_GENCTRL_DIV(1) | GCLK_GENCTRL_SRC(8) | GCLK_GENCTRL_GENEN_Msk;
+
+    while((GCLK_REGS->GCLK_SYNCBUSY & GCLK_SYNCBUSY_GENCTRL_GCLK4) == GCLK_SYNCBUSY_GENCTRL_GCLK4)
+    {
+        /* wait for the Generator 4 synchronization */
+    }
+}
+
 void CLOCK_Initialize (void)
 {
     /* Function to Initialize the Oscillators */
@@ -175,18 +230,42 @@ void CLOCK_Initialize (void)
     /* Function to Initialize the 32KHz Oscillators */
     OSC32KCTRL_Initialize();
 
+    GCLK3_Initialize();
     GCLK1_Initialize();
     DFLL_Initialize();
     FDPLL0_Initialize();
+    FDPLL1_Initialize();
     GCLK2_Initialize();
     GCLK0_Initialize();
+    GCLK4_Initialize();
 
 
 
+    /* Selection of the Generator and write Lock for OSCCTRL_FDPLL032K OSCCTRL_FDPLL132K SDHC0_SLOW SERCOM0_SLOW SERCOM1_SLOW SERCOM2_SLOW SERCOM3_SLOW SERCOM4_SLOW SERCOM5_SLOW */
+    GCLK_REGS->GCLK_PCHCTRL[3] = GCLK_PCHCTRL_GEN(0x3)  | GCLK_PCHCTRL_CHEN_Msk;
+
+    while ((GCLK_REGS->GCLK_PCHCTRL[3] & GCLK_PCHCTRL_CHEN_Msk) != GCLK_PCHCTRL_CHEN_Msk)
+    {
+        /* Wait for synchronization */
+    }
+    /* Selection of the Generator and write Lock for TC0 TC1 */
+    GCLK_REGS->GCLK_PCHCTRL[9] = GCLK_PCHCTRL_GEN(0x1)  | GCLK_PCHCTRL_CHEN_Msk;
+
+    while ((GCLK_REGS->GCLK_PCHCTRL[9] & GCLK_PCHCTRL_CHEN_Msk) != GCLK_PCHCTRL_CHEN_Msk)
+    {
+        /* Wait for synchronization */
+    }
     /* Selection of the Generator and write Lock for USB */
     GCLK_REGS->GCLK_PCHCTRL[10] = GCLK_PCHCTRL_GEN(0x2)  | GCLK_PCHCTRL_CHEN_Msk;
 
     while ((GCLK_REGS->GCLK_PCHCTRL[10] & GCLK_PCHCTRL_CHEN_Msk) != GCLK_PCHCTRL_CHEN_Msk)
+    {
+        /* Wait for synchronization */
+    }
+    /* Selection of the Generator and write Lock for SDHC0 */
+    GCLK_REGS->GCLK_PCHCTRL[45] = GCLK_PCHCTRL_GEN(0x4)  | GCLK_PCHCTRL_CHEN_Msk;
+
+    while ((GCLK_REGS->GCLK_PCHCTRL[45] & GCLK_PCHCTRL_CHEN_Msk) != GCLK_PCHCTRL_CHEN_Msk)
     {
         /* Wait for synchronization */
     }
@@ -195,7 +274,7 @@ void CLOCK_Initialize (void)
     MCLK_REGS->MCLK_AHBMASK = 0xffffff;
 
     /* Configure the APBA Bridge Clocks */
-    MCLK_REGS->MCLK_APBAMASK = 0x7ff;
+    MCLK_REGS->MCLK_APBAMASK = 0x47ff;
 
     /* Configure the APBB Bridge Clocks */
     MCLK_REGS->MCLK_APBBMASK = 0x18057;

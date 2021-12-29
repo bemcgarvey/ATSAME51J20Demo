@@ -79,6 +79,15 @@ extern "C" {
 // Section: System Service Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* TIME System Service Configuration Options */
+#define SYS_TIME_INDEX_0                            (0)
+#define SYS_TIME_MAX_TIMERS                         (5)
+#define SYS_TIME_HW_COUNTER_WIDTH                   (16)
+#define SYS_TIME_HW_COUNTER_PERIOD                  (0xFFFFU)
+#define SYS_TIME_HW_COUNTER_HALF_PERIOD             (SYS_TIME_HW_COUNTER_PERIOD>>1)
+#define SYS_TIME_CPU_CLOCK_FREQUENCY                (120000000)
+#define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES    (188)
+
 
 
 // *****************************************************************************
@@ -86,6 +95,25 @@ extern "C" {
 // Section: Driver Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* SDMMC Driver Global Configuration Options */
+#define DRV_SDMMC_INSTANCES_NUMBER                       1
+
+
+/*** SDMMC Driver Instance 0 Configuration ***/
+#define DRV_SDMMC_INDEX_0                                0
+#define DRV_SDMMC_CLIENTS_NUMBER_IDX0                    1
+#define DRV_SDMMC_QUEUE_SIZE_IDX0                        2
+#define DRV_SDMMC_PROTOCOL_SUPPORT_IDX0                  DRV_SDMMC_PROTOCOL_SD
+#define DRV_SDMMC_CONFIG_SPEED_MODE_IDX0                 DRV_SDMMC_SPEED_MODE_HIGH
+#define DRV_SDMMC_CONFIG_BUS_WIDTH_IDX0                  DRV_SDMMC_BUS_WIDTH_4_BIT
+#define DRV_SDMMC_CARD_DETECTION_METHOD_IDX0             DRV_SDMMC_CD_METHOD_USE_SDCD
+
+/* SDMMC Driver Instance 0 RTOS Configurations*/
+#define DRV_SDMMC_STACK_SIZE_IDX0                         1024
+#define DRV_SDMMC_PRIORITY_IDX0                           1
+#define DRV_SDMMC_RTOS_DELAY_IDX0                         1
+
+
 
 
 // *****************************************************************************
@@ -93,6 +121,25 @@ extern "C" {
 // Section: Middleware & Other Library Configuration
 // *****************************************************************************
 // *****************************************************************************
+/* Number of Endpoints used */
+#define DRV_USBFSV1_ENDPOINTS_NUMBER                        4
+
+/* The USB Device Layer will not initialize the USB Driver */
+#define USB_DEVICE_DRIVER_INITIALIZE_EXPLICIT
+
+/* Maximum device layer instances */
+#define USB_DEVICE_INSTANCES_NUMBER                         1
+
+/* EP0 size in bytes */
+#define USB_DEVICE_EP0_BUFFER_SIZE                          64
+
+/* Enable SOF Events */
+#define USB_DEVICE_SOF_EVENT_ENABLE
+
+
+
+
+
 /* Maximum instances of CDC function driver */
 #define USB_DEVICE_CDC_INSTANCES_NUMBER                     1
 
@@ -101,6 +148,17 @@ extern "C" {
    write. Applicable to all instances of the
    function driver */
 #define USB_DEVICE_CDC_QUEUE_DEPTH_COMBINED                 3
+
+/* Maximum instances of MSD function driver */
+#define USB_DEVICE_MSD_INSTANCES_NUMBER     1 
+
+#define USB_DEVICE_MSD_NUM_SECTOR_BUFFERS 1
+
+
+/* Number of Logical Units */
+#define USB_DEVICE_MSD_LUNS_NUMBER      1
+
+
 
 /*** USB Driver Configuration ***/
 
@@ -119,25 +177,6 @@ extern "C" {
 
 /* Alignment for buffers that are submitted to USB Driver*/ 
 #define USB_ALIGN  __ALIGNED(CACHE_LINE_SIZE)
-
-/* Number of Endpoints used */
-#define DRV_USBFSV1_ENDPOINTS_NUMBER                        3
-
-/* The USB Device Layer will not initialize the USB Driver */
-#define USB_DEVICE_DRIVER_INITIALIZE_EXPLICIT
-
-/* Maximum device layer instances */
-#define USB_DEVICE_INSTANCES_NUMBER                         1
-
-/* EP0 size in bytes */
-#define USB_DEVICE_EP0_BUFFER_SIZE                          64
-
-/* Enable SOF Events */
-#define USB_DEVICE_SOF_EVENT_ENABLE
-
-
-
-
 
 
 

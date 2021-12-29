@@ -34,6 +34,9 @@
 // *****************************************************************************
 // *****************************************************************************
 
+//Notes:  It appears that a composite device requires a serial number in the 
+// usb device descriptor.
+
 int main ( void )
 {
     /* Initialize all modules */

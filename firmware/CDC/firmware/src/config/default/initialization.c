@@ -78,6 +78,56 @@
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+// <editor-fold defaultstate="collapsed" desc="DRV_SDMMC Instance 0 Initialization Data">
+
+/* SDMMC Client Objects Pool */
+static DRV_SDMMC_CLIENT_OBJ drvSDMMC0ClientObjPool[DRV_SDMMC_CLIENTS_NUMBER_IDX0];
+
+/* SDMMC Transfer Objects Pool */
+static DRV_SDMMC_BUFFER_OBJ drvSDMMC0BufferObjPool[DRV_SDMMC_QUEUE_SIZE_IDX0];
+
+
+const DRV_SDMMC_PLIB_API drvSDMMC0PlibAPI = {
+    .sdhostCallbackRegister = (DRV_SDMMC_PLIB_CALLBACK_REGISTER)SDHC0_CallbackRegister,
+    .sdhostInitModule = (DRV_SDMMC_PLIB_INIT_MODULE)SDHC0_ModuleInit,
+    .sdhostSetClock  = (DRV_SDMMC_PLIB_SET_CLOCK)SDHC0_ClockSet,
+    .sdhostIsCmdLineBusy = (DRV_SDMMC_PLIB_IS_CMD_LINE_BUSY)SDHC0_IsCmdLineBusy,
+    .sdhostIsDatLineBusy = (DRV_SDMMC_PLIB_IS_DATA_LINE_BUSY)SDHC0_IsDatLineBusy,
+    .sdhostSendCommand = (DRV_SDMMC_PLIB_SEND_COMMAND)SDHC0_CommandSend,
+    .sdhostReadResponse = (DRV_SDMMC_PLIB_READ_RESPONSE)SDHC0_ResponseRead,
+    .sdhostSetBlockCount = (DRV_SDMMC_PLIB_SET_BLOCK_COUNT)SDHC0_BlockCountSet,
+    .sdhostSetBlockSize = (DRV_SDMMC_PLIB_SET_BLOCK_SIZE)SDHC0_BlockSizeSet,
+    .sdhostSetBusWidth = (DRV_SDMMC_PLIB_SET_BUS_WIDTH)SDHC0_BusWidthSet,
+    .sdhostSetSpeedMode = (DRV_SDMMC_PLIB_SET_SPEED_MODE)SDHC0_SpeedModeSet,
+    .sdhostSetupDma = (DRV_SDMMC_PLIB_SETUP_DMA)SDHC0_DmaSetup,
+    .sdhostGetCommandError = (DRV_SDMMC_PLIB_GET_COMMAND_ERROR)SDHC0_CommandErrorGet,
+    .sdhostGetDataError = (DRV_SDMMC_PLIB_GET_DATA_ERROR)SDHC0_DataErrorGet,
+    .sdhostClockEnable = (DRV_SDMMC_PLIB_CLOCK_ENABLE)SDHC0_ClockEnable,
+    .sdhostResetError = (DRV_SDMMC_PLIB_RESET_ERROR)SDHC0_ErrorReset,
+    .sdhostIsCardAttached = (DRV_SDMMC_PLIB_IS_CARD_ATTACHED)SDHC0_IsCardAttached,
+    .sdhostIsWriteProtected = (DRV_SDMMC_PLIB_IS_WRITE_PROTECTED)NULL,
+};
+
+/*** SDMMC Driver Initialization Data ***/
+const DRV_SDMMC_INIT drvSDMMC0InitData =
+{
+    .sdmmcPlib                      = &drvSDMMC0PlibAPI,
+    .bufferObjPool                  = (uintptr_t)&drvSDMMC0BufferObjPool[0],
+    .bufferObjPoolSize              = DRV_SDMMC_QUEUE_SIZE_IDX0,
+    .clientObjPool                  = (uintptr_t)&drvSDMMC0ClientObjPool[0],
+    .numClients                     = DRV_SDMMC_CLIENTS_NUMBER_IDX0,
+    .protocol                       = DRV_SDMMC_PROTOCOL_SUPPORT_IDX0,
+    .cardDetectionMethod            = DRV_SDMMC_CARD_DETECTION_METHOD_IDX0,
+    .cardDetectionPollingIntervalMs = 0,
+    .isWriteProtectCheckEnabled     = false,
+    .speedMode                      = DRV_SDMMC_CONFIG_SPEED_MODE_IDX0,
+    .busWidth                       = DRV_SDMMC_CONFIG_BUS_WIDTH_IDX0,
+	.sleepWhenIdle 					= false,
+    .isFsEnabled                    = false,
+};
+
+// </editor-fold>
+
 
 
 // *****************************************************************************
@@ -174,6 +224,25 @@ const DRV_USBFSV1_INIT drvUSBInit =
 // Section: System Initialization
 // *****************************************************************************
 // *****************************************************************************
+// <editor-fold defaultstate="collapsed" desc="SYS_TIME Initialization Data">
+
+const SYS_TIME_PLIB_INTERFACE sysTimePlibAPI = {
+    .timerCallbackSet = (SYS_TIME_PLIB_CALLBACK_REGISTER)TC0_TimerCallbackRegister,
+    .timerStart = (SYS_TIME_PLIB_START)TC0_TimerStart,
+    .timerStop = (SYS_TIME_PLIB_STOP)TC0_TimerStop,
+    .timerFrequencyGet = (SYS_TIME_PLIB_FREQUENCY_GET)TC0_TimerFrequencyGet,
+    .timerPeriodSet = (SYS_TIME_PLIB_PERIOD_SET)TC0_Timer16bitPeriodSet,
+    .timerCompareSet = (SYS_TIME_PLIB_COMPARE_SET)TC0_Timer16bitCompareSet,
+    .timerCounterGet = (SYS_TIME_PLIB_COUNTER_GET)TC0_Timer16bitCounterGet,
+};
+
+const SYS_TIME_INIT sysTimeInitData =
+{
+    .timePlib = &sysTimePlibAPI,
+    .hwTimerIntNum = TC0_IRQn,
+};
+
+// </editor-fold>
 
 
 
@@ -210,17 +279,25 @@ void SYS_Initialize ( void* data )
 
     EVSYS_Initialize();
 
+    TC0_TimerInitialize();
+
+	SDHC0_Initialize();
 
 
 
-	/* Initialize USB Driver */ 
-    sysObj.drvUSBFSV1Object = DRV_USBFSV1_Initialize(DRV_USBFSV1_INDEX_0, (SYS_MODULE_INIT *) &drvUSBInit);	
+    sysObj.drvSDMMC0 = DRV_SDMMC_Initialize(DRV_SDMMC_INDEX_0,(SYS_MODULE_INIT *)&drvSDMMC0InitData);
+
+
+    sysObj.sysTime = SYS_TIME_Initialize(SYS_TIME_INDEX_0, (SYS_MODULE_INIT *)&sysTimeInitData);
 
 
 	 /* Initialize the USB device layer */
     sysObj.usbDevObject0 = USB_DEVICE_Initialize (USB_DEVICE_INDEX_0 , ( SYS_MODULE_INIT* ) & usbDevInitData);
 	
 	
+
+	/* Initialize USB Driver */ 
+    sysObj.drvUSBFSV1Object = DRV_USBFSV1_Initialize(DRV_USBFSV1_INDEX_0, (SYS_MODULE_INIT *) &drvUSBInit);	
 
 
     APP_Initialize();
