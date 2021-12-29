@@ -38,7 +38,6 @@
 //TODO demo the following
 // ADC and DAC
 // NVM SmartEEPROM
-// DMA
 
 void buttonCallback(uintptr_t context);
 void tc5Callback(TC_TIMER_STATUS status, uintptr_t context);
