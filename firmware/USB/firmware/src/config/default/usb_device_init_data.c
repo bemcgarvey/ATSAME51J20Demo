@@ -85,7 +85,7 @@ USB_DEVICE_MSD_MEDIA_INIT_DATA USB_ALIGN  msdMediaInit0[2] =
                      // but as in case of other device, we are just using 00
             0x00,    // 00 obsolete, 0x80 for basic task queueing
             {
-                'M','i','c','r','o','c','h','p'
+                'Q','E','S',' ',' ',' ',' ',' '
             },
             {
                 'M','a','s','s',' ','S','t','o','r','a','g','e',' ',' ',' ',' '
@@ -124,7 +124,7 @@ USB_DEVICE_MSD_MEDIA_INIT_DATA USB_ALIGN  msdMediaInit0[2] =
                      // but as in case of other device, we are just using 00
             0x00,    // 00 obsolete, 0x80 for basic task queueing
             {
-                'M','i','c','r','o','c','h','p'
+                'Q','E','S',' ',' ',' ',' ',' '
             },
             {
                 'M','a','s','s',' ','S','t','o','r','a','g','e',' ',' ',' ',' '
