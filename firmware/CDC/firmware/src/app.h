@@ -165,6 +165,8 @@ typedef struct
 
     /* Number of bytes read from Host */ 
     uint32_t numBytesRead; 
+    
+    uint32_t numBytesToWrite;
 } APP_DATA;
 
 // *****************************************************************************

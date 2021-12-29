@@ -1,6 +1,6 @@
 
 #include "app.h"
-
+#include <string.h>
 
 // *****************************************************************************
 // *****************************************************************************
@@ -322,7 +322,6 @@ void APP_Initialize(void) {
 void APP_Tasks(void) {
     /* Update the application state machine based
      * on the current state */
-    int i;
 
     switch (appData.state) {
         case APP_STATE_INIT:
@@ -379,62 +378,54 @@ void APP_Tasks(void) {
             break;
 
         case APP_STATE_WAIT_FOR_READ_COMPLETE:
-
             if (APP_StateReset()) {
                 break;
             }
-            
-            if(appData.isReadComplete)
-            {
-                appData.state = APP_STATE_SCHEDULE_WRITE;
+            if (appData.isReadComplete) {
+                appData.numBytesToWrite = 0;
+                switch (appData.cdcReadBuffer[0]) {
+                    case '1': BlueLed_Toggle();
+                        break;
+                    case '2': GreenLed_Set();
+                        strcpy((char *) appData.cdcWriteBuffer, "Green On\r\n");
+                        appData.numBytesToWrite = strlen((char *) appData.cdcWriteBuffer);
+                        break;
+                    case '3': GreenLed_Clear();
+                        strcpy((char *) appData.cdcWriteBuffer, "Green Off\r\n");
+                        appData.numBytesToWrite = strlen((char *) appData.cdcWriteBuffer);
+                        break;
+                }
+                if (appData.numBytesToWrite > 0) {
+                    appData.state = APP_STATE_SCHEDULE_WRITE;
+                } else {
+                    appData.state = APP_STATE_SCHEDULE_READ;
+                }
             }
-            BlueLed_Set();
-
             break;
-
-
         case APP_STATE_SCHEDULE_WRITE:
 
             if (APP_StateReset()) {
                 break;
             }
-
             /* Setup the write */
-
             appData.writeTransferHandle = USB_DEVICE_CDC_TRANSFER_HANDLE_INVALID;
             appData.isWriteComplete = false;
             appData.state = APP_STATE_WAIT_FOR_WRITE_COMPLETE;
-
-            /* Else echo each received character by adding 1 */
-            for (i = 0; i < appData.numBytesRead; i++) {
-                if ((appData.cdcReadBuffer[i] != 0x0A) && (appData.cdcReadBuffer[i] != 0x0D)) {
-                    appData.cdcWriteBuffer[i] = appData.cdcReadBuffer[i] + 1;
-                }
-            }
             USB_DEVICE_CDC_Write(USB_DEVICE_CDC_INDEX_0,
                     &appData.writeTransferHandle,
-                    appData.cdcWriteBuffer, appData.numBytesRead,
+                    appData.cdcWriteBuffer, appData.numBytesToWrite,
                     USB_DEVICE_CDC_TRANSFER_FLAGS_DATA_COMPLETE);
             break;
-
         case APP_STATE_WAIT_FOR_WRITE_COMPLETE:
-
             if (APP_StateReset()) {
                 break;
             }
-
-            /* Check if a character was sent. The isWriteComplete
-             * flag gets updated in the CDC event handler */
-
             if (appData.isWriteComplete == true) {
                 appData.state = APP_STATE_SCHEDULE_READ;
             }
-
             break;
-
         case APP_STATE_ERROR:
         default:
-
             break;
     }
 }
