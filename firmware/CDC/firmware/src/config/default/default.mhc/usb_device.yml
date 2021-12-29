@@ -92,5 +92,14 @@ children:
       children:
       - type: User
         attributes: {value: '0x4d63'}
+  - type: File
+    attributes: {id: USB_DEVICE_SYS_RTOS_TASK}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
 - type: ElementPosition
   attributes: {x: '210', y: '180', id: usb_device}

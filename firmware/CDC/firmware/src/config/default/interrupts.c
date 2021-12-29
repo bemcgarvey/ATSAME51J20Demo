@@ -80,10 +80,9 @@ void __attribute__((optimize("-O1"),section(".text.Dummy_Handler"),long_call, no
 extern void MemoryManagement_Handler   ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void BusFault_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void UsageFault_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void SVCall_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void vPortSVCHandler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void DebugMonitor_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void PendSV_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void SysTick_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void xPortPendSVHandler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PM_Handler                 ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void MCLK_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void OSCCTRL_XOSC0_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -221,10 +220,10 @@ const H3DeviceVectors exception_table=
     .pfnMemoryManagement_Handler   = MemoryManagement_Handler,
     .pfnBusFault_Handler           = BusFault_Handler,
     .pfnUsageFault_Handler         = UsageFault_Handler,
-    .pfnSVCall_Handler             = SVCall_Handler,
+    .pfnSVCall_Handler             = vPortSVCHandler,
     .pfnDebugMonitor_Handler       = DebugMonitor_Handler,
-    .pfnPendSV_Handler             = PendSV_Handler,
-    .pfnSysTick_Handler            = SysTick_Handler,
+    .pfnPendSV_Handler             = xPortPendSVHandler,
+    .pfnSysTick_Handler            = xPortSysTickHandler,
     .pfnPM_Handler                 = PM_Handler,
     .pfnMCLK_Handler               = MCLK_Handler,
     .pfnOSCCTRL_XOSC0_Handler      = OSCCTRL_XOSC0_Handler,

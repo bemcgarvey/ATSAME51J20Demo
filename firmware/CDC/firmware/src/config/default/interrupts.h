@@ -60,6 +60,7 @@
 void Reset_Handler (void);
 void NonMaskableInt_Handler (void);
 void HardFault_Handler (void);
+void xPortSysTickHandler (void);
 void DRV_USBFSV1_OTHER_Handler (void);
 void DRV_USBFSV1_SOF_HSOF_Handler (void);
 void DRV_USBFSV1_TRCPT0_Handler (void);

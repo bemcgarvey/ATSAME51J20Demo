@@ -382,24 +382,34 @@ void APP_Tasks(void) {
                 break;
             }
             if (appData.isReadComplete) {
-                appData.numBytesToWrite = 0;
-                switch (appData.cdcReadBuffer[0]) {
-                    case '1': BlueLed_Toggle();
-                        break;
-                    case '2': GreenLed_Set();
-                        strcpy((char *) appData.cdcWriteBuffer, "Green On\r\n");
-                        appData.numBytesToWrite = strlen((char *) appData.cdcWriteBuffer);
-                        break;
-                    case '3': GreenLed_Clear();
-                        strcpy((char *) appData.cdcWriteBuffer, "Green Off\r\n");
-                        appData.numBytesToWrite = strlen((char *) appData.cdcWriteBuffer);
-                        break;
+                for (int i = 0; i < appData.numBytesRead; ++i) {
+                    while (appData.isWriteComplete == false) {
+                        vTaskDelay(1);
+                    }
+                    appData.numBytesToWrite = 0;
+                    switch (appData.cdcReadBuffer[i]) {
+                        case '1': BlueLed_Toggle();
+                            break;
+                        case '2': GreenLed_Set();
+                            strcpy((char *) appData.cdcWriteBuffer, "Green On\r\n");
+                            appData.numBytesToWrite = strlen((char *) appData.cdcWriteBuffer);
+                            break;
+                        case '3': GreenLed_Clear();
+                            strcpy((char *) appData.cdcWriteBuffer, "Green Off\r\n");
+                            appData.numBytesToWrite = strlen((char *) appData.cdcWriteBuffer);
+                            break;
+                    }
+                    if (appData.numBytesToWrite > 0) {
+                        appData.writeTransferHandle = USB_DEVICE_CDC_TRANSFER_HANDLE_INVALID;
+                        appData.isWriteComplete = false;
+                        appData.state = APP_STATE_WAIT_FOR_WRITE_COMPLETE;
+                        USB_DEVICE_CDC_Write(USB_DEVICE_CDC_INDEX_0,
+                                &appData.writeTransferHandle,
+                                appData.cdcWriteBuffer, appData.numBytesToWrite,
+                                USB_DEVICE_CDC_TRANSFER_FLAGS_DATA_COMPLETE);
+                    }
                 }
-                if (appData.numBytesToWrite > 0) {
-                    appData.state = APP_STATE_SCHEDULE_WRITE;
-                } else {
-                    appData.state = APP_STATE_SCHEDULE_READ;
-                }
+                appData.state = APP_STATE_SCHEDULE_READ;
             }
             break;
         case APP_STATE_SCHEDULE_WRITE:
