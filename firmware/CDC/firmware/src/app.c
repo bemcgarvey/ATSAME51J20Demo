@@ -398,6 +398,15 @@ void APP_Tasks(void) {
                             strcpy((char *) appData.cdcWriteBuffer, "Green Off\r\n");
                             appData.numBytesToWrite = strlen((char *) appData.cdcWriteBuffer);
                             break;
+                        case '4':
+                            for (int j = 0; j < 26 * 4; ++j) {
+                                appData.cdcWriteBuffer[j] = 'a' + (j % 26);
+                            }
+                            appData.cdcWriteBuffer[26 * 4] = '\r';
+                            appData.cdcWriteBuffer[26 * 4 + 1] = '\n';
+                            appData.cdcWriteBuffer[26 * 4 + 2] = '\0';
+                            appData.numBytesToWrite = strlen((char *) appData.cdcWriteBuffer);
+                            break;
                     }
                     if (appData.numBytesToWrite > 0) {
                         appData.writeTransferHandle = USB_DEVICE_CDC_TRANSFER_HANDLE_INVALID;
