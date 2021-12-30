@@ -13,13 +13,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 6069C4FD56993BDA3B1FC223DD5BAA4A
-- generatedChecksum: 26A207D9C5251AB868B79EBA6C55899C
+- generatedChecksum: 58C2956194EB58BDC84AF723FC6966F5
   logicalPath: config/default
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 26A207D9C5251AB868B79EBA6C55899C
+  userChecksum: 58C2956194EB58BDC84AF723FC6966F5
 - generatedChecksum: 4B79B8B11248B6EEF09025D521B25B97
   logicalPath: config/default
   name: interrupts.c
@@ -41,13 +41,20 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: null
-- generatedChecksum: 1E60CC61744B92862FD89623AA6C5A7F
+- generatedChecksum: 78E762CE5F9906195160387223681A40
+  logicalPath: config/default/peripheral/adc
+  name: plib_adc0.c
+  physicalPath: peripheral/adc
+  security: NON_SECURE
+  type: SOURCE
+  userChecksum: 78E762CE5F9906195160387223681A40
+- generatedChecksum: CC944E64CCDD2233C2024D6C862E43B0
   logicalPath: config/default/peripheral/clock
   name: plib_clock.c
   physicalPath: peripheral/clock
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 1E60CC61744B92862FD89623AA6C5A7F
+  userChecksum: CC944E64CCDD2233C2024D6C862E43B0
 - generatedChecksum: D903E8D9DCBC4107D0AA841E07F653BA
   logicalPath: config/default/peripheral/cmcc
   name: plib_cmcc.c
@@ -90,13 +97,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 60206C5726DB3EA903435439B8DB6401
-- generatedChecksum: 5ED94DE345803E84EC0CEA44E5B43CFC
+- generatedChecksum: 207B838F67908C88DC09381E6ED3A8E8
   logicalPath: config/default/peripheral/port
   name: plib_port.c
   physicalPath: peripheral/port
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 5ED94DE345803E84EC0CEA44E5B43CFC
+  userChecksum: 207B838F67908C88DC09381E6ED3A8E8
 - generatedChecksum: 7A0E59547A76E4DC776C520B76A4A2AD
   logicalPath: config/default/peripheral/rstc
   name: plib_rstc.c
@@ -377,13 +384,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 65513601965E1BADD5659DCE674BE9AD
-- generatedChecksum: F7704C8D19FC515FDE98BCA70F70C78A
+- generatedChecksum: D8CB4FEA5C19FB1EF58711CE614EE697
   logicalPath: config/default
   name: definitions.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: F7704C8D19FC515FDE98BCA70F70C78A
+  userChecksum: D8CB4FEA5C19FB1EF58711CE614EE697
 - generatedChecksum: CB14434C0E245529DDD9AFEAE3CA6AF1
   logicalPath: config/default
   name: device.h
@@ -678,6 +685,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 85FADB9C183F18E470BEDFE15F828944
+- generatedChecksum: 23E8A630917E9873CCE7D45894E9DE4E
+  logicalPath: config/default/peripheral/adc
+  name: plib_adc0.h
+  physicalPath: peripheral/adc
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 23E8A630917E9873CCE7D45894E9DE4E
+- generatedChecksum: 8BB9708E06376056BE3E3099823B3362
+  logicalPath: config/default/peripheral/adc
+  name: plib_adc_common.h
+  physicalPath: peripheral/adc
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 8BB9708E06376056BE3E3099823B3362
 - generatedChecksum: 0416F129713FDF989ACC1FC57065125C
   logicalPath: config/default/peripheral/clock
   name: plib_clock.h

@@ -35,10 +35,6 @@
 // *****************************************************************************
 // *****************************************************************************
 
-//TODO demo the following
-// ADC and DAC
-// NVM SmartEEPROM
-
 void buttonCallback(uintptr_t context);
 void tc5Callback(TC_TIMER_STATUS status, uintptr_t context);
 struct tm curtime;
@@ -67,6 +63,8 @@ int main(void) {
         curtime.tm_year = 2022 - 1900;
         RTC_RTCCTimeSet(&curtime);
     }
+    ADC0_ChannelSelect(ADC_POSINPUT_AIN0, ADC_NEGINPUT_GND);
+    ADC0_Enable();
     while (true) {
         lprintf(1, "Count=%d", count);
         int16_t pos = PDEC_QDECPositionGet();
@@ -77,11 +75,15 @@ int main(void) {
         }
         pos /= 4;
         rev /= 1024;
-        printf("\rPosition=%2hi revolution = %2hi ", pos, rev);
+        printf("\rPos=%2hi rev=%2hi ", pos, rev);
         RTC_RTCCTimeGet(&curtime);
-        printf(" %02d:%02d:%02d  %d/%d/%d     ", curtime.tm_hour, curtime.tm_min
+        printf(" %02d:%02d:%02d  %d/%d/%d    ", curtime.tm_hour, curtime.tm_min
                 , curtime.tm_sec, curtime.tm_mon + 1, curtime.tm_mday, curtime.tm_year + 1900);
         ++count;
+        ADC0_ConversionStart();
+        while (ADC0_ConversionStatusGet() == false);
+        int adcResult = ADC0_ConversionResultGet();
+        printf("ADC=%-4d", adcResult);
         SYS_TIME_HANDLE timer = SYS_TIME_HANDLE_INVALID;
         if (SYS_TIME_DelayMS(500, &timer) == SYS_TIME_SUCCESS) {
             while (SYS_TIME_DelayIsComplete(timer) == false);

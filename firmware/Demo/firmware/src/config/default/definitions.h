@@ -65,6 +65,7 @@
 #include "peripheral/pdec/plib_pdec.h"
 #include "system/time/sys_time.h"
 #include "peripheral/tc/plib_tc4.h"
+#include "peripheral/adc/plib_adc0.h"
 #include "system/int/sys_int.h"
 #include "system/cache/sys_cache.h"
 #include "osal/osal.h"
