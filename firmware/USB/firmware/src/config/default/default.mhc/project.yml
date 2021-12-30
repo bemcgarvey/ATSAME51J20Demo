@@ -76,13 +76,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: null
-- generatedChecksum: C7671342661BDFF1A2C691E178F14EB8
+- generatedChecksum: D4DB01FB5087FE474C067AD79611B71C
   logicalPath: config/default/peripheral/clock
   name: plib_clock.c
   physicalPath: peripheral/clock
   security: NON_SECURE
   type: SOURCE
-  userChecksum: C7671342661BDFF1A2C691E178F14EB8
+  userChecksum: D4DB01FB5087FE474C067AD79611B71C
 - generatedChecksum: D903E8D9DCBC4107D0AA841E07F653BA
   logicalPath: config/default/peripheral/cmcc
   name: plib_cmcc.c
@@ -111,13 +111,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 903E0413B53BA9E8980C740E65F59966
-- generatedChecksum: 499FF7EE8246CD47416A82B374A31634
+- generatedChecksum: C0657A7F7E1B7BF2AFE821DC99C76AA4
   logicalPath: config/default/peripheral/port
   name: plib_port.c
   physicalPath: peripheral/port
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 499FF7EE8246CD47416A82B374A31634
+  userChecksum: C0657A7F7E1B7BF2AFE821DC99C76AA4
 - generatedChecksum: 274AD4E903F7ABBA91A613B52098BC87
   logicalPath: config/default/peripheral/sdhc
   name: plib_sdhc0.c
@@ -180,7 +180,7 @@ files:
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 9AB2A5AB597848F341461B882E603A1C
+  userChecksum: 293237B557D91FC6817B33466AEE8D55
 - generatedChecksum: 5B2E4F04BB9E3347BD0D10242479D4F0
   logicalPath: config/default/usb/src
   name: usb_device_msd.c
@@ -356,13 +356,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 52F91AC0727F2311EDA0E3BAA7719A9F
-- generatedChecksum: 100DE3852BCDCB2A962C0E817AF1D1C1
+- generatedChecksum: A95FCA706D1E5C625E48A41D7AD3FE28
   logicalPath: config/default
   name: configuration.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 100DE3852BCDCB2A962C0E817AF1D1C1
+  userChecksum: A95FCA706D1E5C625E48A41D7AD3FE28
 - generatedChecksum: 7EF1FAD7778FEEAC9467270306D7F7C0
   logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: core_cm4.h
@@ -384,13 +384,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 65513601965E1BADD5659DCE674BE9AD
-- generatedChecksum: 8C49714C75ADE32BD17168AA6B80DB32
+- generatedChecksum: 199874B604F9E66C07C2A0389957E8E1
   logicalPath: config/default
   name: definitions.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: 8C49714C75ADE32BD17168AA6B80DB32
+  userChecksum: 199874B604F9E66C07C2A0389957E8E1
 - generatedChecksum: CB14434C0E245529DDD9AFEAE3CA6AF1
   logicalPath: config/default
   name: device.h
@@ -811,20 +811,20 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 55ECCC7FA71BD15B46EF80DC0515ED7A
-- generatedChecksum: C8F01C21146B29B61DFF572484B06098
+- generatedChecksum: CF43D73A562D2EA895382139A3A27906
   logicalPath: config/default/peripheral/nvmctrl
   name: plib_nvmctrl.h
   physicalPath: peripheral/nvmctrl
   security: NON_SECURE
   type: HEADER
-  userChecksum: C8F01C21146B29B61DFF572484B06098
-- generatedChecksum: C7F04605B29D6AE5D884D26CF5C4C2E2
+  userChecksum: CF43D73A562D2EA895382139A3A27906
+- generatedChecksum: 65ED34E1ADD68B57812BAEC54426CCFC
   logicalPath: config/default/peripheral/port
   name: plib_port.h
   physicalPath: peripheral/port
   security: NON_SECURE
   type: HEADER
-  userChecksum: C7F04605B29D6AE5D884D26CF5C4C2E2
+  userChecksum: 65ED34E1ADD68B57812BAEC54426CCFC
 - generatedChecksum: 95D2B0BF2C8B9199336994D3C3482A0B
   logicalPath: config/default/peripheral/sdhc
   name: plib_sdhc0.h
